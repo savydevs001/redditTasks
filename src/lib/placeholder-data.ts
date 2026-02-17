@@ -32,6 +32,18 @@ export const tasks = {
     { id: 7, type: 'comment', title: 'Engage in a discussion about travel destinations', postUrl: 'https://www.reddit.com/r/travel/comments/yyyyyy', payment: 4.00, comment: 'I completely agree, Southeast Asia is incredible for backpackers. The food alone is worth the trip!' },
     { id: 8, type: 'comment', title: 'Influence opinion on a new movie', postUrl: 'https://www.reddit.com/r/movies/comments/zzzzzz', payment: 5.00, comment: 'I was pleasantly surprised by this movie. The cinematography was stunning, and the lead actor gave a powerful performance.' },
   ],
+  acceptedTasks: [
+    { id: 9, title: 'Write a comprehensive guide on home gardening', payment: 25.00, progress: 60, status: 'Writing post' },
+    { id: 10, title: 'Find and comment on 5 relevant posts', payment: 10.00, progress: 80, status: 'Commenting' },
+    { id: 11, title: 'Create a video review for a product', payment: 50.00, progress: 25, status: 'Scripting' },
+  ],
+  completedTasks: [
+    { id: 12, title: 'Post about a new productivity app', completedDate: '2023-06-10', earned: 5.00 },
+    { id: 13, title: 'Comment on a thread in r/technology', completedDate: '2023-06-09', earned: 2.50 },
+    { id: 14, title: 'Write a review for a local restaurant', completedDate: '2023-06-08', earned: 10.00 },
+    { id: 15, title: 'Create a post comparing two smartphones', completedDate: '2023-06-05', earned: 18.00 },
+    { id: 16, title: 'Share a travel itinerary for a weekend trip', completedDate: '2023-06-02', earned: 12.00 },
+  ],
 };
 
 export const referrals = {
