@@ -1,4 +1,4 @@
-import { BotMessageSquare } from "lucide-react";
+import { Briefcase } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ export function Logo({ className }: { className?: string }) {
         className
       )}
     >
-      <BotMessageSquare className="h-7 w-7 text-primary" />
+      <Briefcase className="h-7 w-7 text-primary" />
       <span className="text-xl font-bold font-headline">
         Reddittasks
       </span>

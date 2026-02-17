@@ -27,10 +27,10 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Earnings</CardTitle>
-            <span className="text-2xl text-accent-foreground">$</span>
+            <span className="text-2xl text-accent">$</span>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-accent">${earnings.total.toFixed(2)}</div>
+            <div className="text-3xl font-bold text-accent-foreground">${earnings.total.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">+20.1% from last month</p>
           </CardContent>
         </Card>
