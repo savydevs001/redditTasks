@@ -10,21 +10,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { Task } from "@/lib/placeholder-data";
 
-type Task = {
-  id: number;
-  type: 'original' | 'copy-paste' | 'comment';
-  title: string;
-  subreddit?: string;
-  payment: number;
-  description?: string;
-  content?: string;
-  postUrl?: string;
-  comment?: string;
-};
-
-export default function TaskCard({ task }: { task: Task }) {
+export default function TaskCard({ task, onAccept }: { task: Task, onAccept: (taskId: number) => void }) {
   const handleAccept = () => {
+    onAccept(task.id);
     toast({
       title: "Task Accepted!",
       description: `You have accepted the task: "${task.title}"`,
@@ -45,9 +35,9 @@ export default function TaskCard({ task }: { task: Task }) {
         )}
       </CardHeader>
       <CardContent className="flex-grow text-sm text-muted-foreground">
-        {task.type === 'original' && <p>{task.description}</p>}
+        {task.type === 'original' && <p className="line-clamp-3">{task.description}</p>}
         {task.type === 'copy-paste' && (
-          <blockquote className="border-l-2 pl-4 italic">{task.content}</blockquote>
+          <blockquote className="border-l-2 pl-4 italic line-clamp-3">{task.content}</blockquote>
         )}
         {task.type === 'comment' && (
           <div>
@@ -57,7 +47,7 @@ export default function TaskCard({ task }: { task: Task }) {
                 this post
               </Link>:
             </p>
-            <blockquote className="border-l-2 pl-4 italic">{task.comment}</blockquote>
+            <blockquote className="border-l-2 pl-4 italic line-clamp-3">{task.comment}</blockquote>
           </div>
         )}
       </CardContent>

@@ -20,10 +20,13 @@ import {
 } from "@/components/ui/table";
 import { Progress } from "@/components/ui/progress";
 import TaskCard from "@/components/tasks/task-card";
-import { tasks } from "@/lib/placeholder-data";
 import { Button } from "@/components/ui/button";
+import { useTasks } from "@/context/tasks-context";
+import { format } from "date-fns";
 
 export default function TasksPage() {
+  const { tasks, acceptTask } = useTasks();
+
   return (
     <div className="space-y-6">
       <div>
@@ -51,21 +54,21 @@ export default function TasksPage() {
             <TabsContent value="original">
               <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
                 {tasks.originalPosts.map((task) => (
-                  <TaskCard key={task.id} task={task} />
+                  <TaskCard key={task.id} task={task} onAccept={acceptTask} />
                 ))}
               </div>
             </TabsContent>
             <TabsContent value="copy-paste">
               <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
                 {tasks.copyPastePosts.map((task) => (
-                  <TaskCard key={task.id} task={task} />
+                  <TaskCard key={task.id} task={task} onAccept={acceptTask} />
                 ))}
               </div>
             </TabsContent>
             <TabsContent value="commenting">
               <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
                 {tasks.commenting.map((task) => (
-                  <TaskCard key={task.id} task={task} />
+                  <TaskCard key={task.id} task={task} onAccept={acceptTask} />
                 ))}
               </div>
             </TabsContent>
@@ -73,28 +76,32 @@ export default function TasksPage() {
         </TabsContent>
         <TabsContent value="in-progress">
           <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
-            {tasks.acceptedTasks.map((task) => (
-              <Card key={task.id} className="flex flex-col">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold leading-snug">{task.title}</CardTitle>
-                  <CardDescription>Payment: ${task.payment.toFixed(2)}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                       <p className="text-sm font-medium text-muted-foreground">{task.status}</p>
-                       <p className="text-sm font-bold">{task.progress}%</p>
+            {tasks.acceptedTasks.length > 0 ? (
+              tasks.acceptedTasks.map((task) => (
+                <Card key={task.id} className="flex flex-col">
+                  <CardHeader>
+                    <CardTitle className="text-lg font-semibold leading-snug">{task.title}</CardTitle>
+                    <CardDescription>Payment: ${task.payment.toFixed(2)}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                         <p className="text-sm font-medium text-muted-foreground">{task.status}</p>
+                         <p className="text-sm font-bold">{task.progress}%</p>
+                      </div>
+                      <Progress value={task.progress} aria-label={`${task.progress}% complete`} />
                     </div>
-                    <Progress value={task.progress} aria-label={`${task.progress}% complete`} />
-                  </div>
-                </CardContent>
-                <CardFooter>
-                    <Button className="w-full" variant="outline" asChild>
-                      <Link href={`/dashboard/tasks/${task.id}`}>View Details</Link>
-                    </Button>
-                </CardFooter>
-              </Card>
-            ))}
+                  </CardContent>
+                  <CardFooter>
+                      <Button className="w-full" asChild>
+                        <Link href={`/dashboard/tasks/${task.id}`}>View Details</Link>
+                      </Button>
+                  </CardFooter>
+                </Card>
+              ))
+            ) : (
+              <p className="text-muted-foreground col-span-full mt-4">You have no tasks in progress. Accept a task from the "Available" tab to get started.</p>
+            )}
           </div>
         </TabsContent>
         <TabsContent value="completed">
@@ -116,7 +123,7 @@ export default function TasksPage() {
                   {tasks.completedTasks.map((task) => (
                     <TableRow key={task.id}>
                       <TableCell className="font-medium">{task.title}</TableCell>
-                      <TableCell className="text-center text-muted-foreground">{task.completedDate}</TableCell>
+                      <TableCell className="text-center text-muted-foreground">{format(new Date(task.completedDate), "PPP")}</TableCell>
                       <TableCell className="text-right font-medium text-accent-foreground">${task.earned.toFixed(2)}</TableCell>
                     </TableRow>
                   ))}
