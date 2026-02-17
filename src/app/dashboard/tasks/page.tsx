@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
@@ -88,7 +89,9 @@ export default function TasksPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full" variant="outline">View Details</Button>
+                    <Button className="w-full" variant="outline" asChild>
+                      <Link href={`/dashboard/tasks/${task.id}`}>View Details</Link>
+                    </Button>
                 </CardFooter>
               </Card>
             ))}
