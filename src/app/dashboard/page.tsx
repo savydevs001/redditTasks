@@ -19,12 +19,12 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h1 className="text-3xl font-bold font-headline">Welcome back, {user.name.split(" ")[0]}!</h1>
+        <h1 className="text-3xl font-bold font-headline bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Welcome back, {user.name.split(" ")[0]}!</h1>
         <p className="text-muted-foreground">Here's a summary of your account and available tasks.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="transition-all hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Earnings</CardTitle>
             <span className="text-2xl text-accent">$</span>
@@ -34,7 +34,7 @@ export default function DashboardPage() {
             <p className="text-xs text-muted-foreground">+20.1% from last month</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="transition-all hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Tasks Completed</CardTitle>
             <CheckCircle className="h-6 w-6 text-primary" />
@@ -44,7 +44,7 @@ export default function DashboardPage() {
             <p className="text-xs text-muted-foreground">Member since {accountStats.memberSince}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="transition-all hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Available Tasks</CardTitle>
             <ListTodo className="h-6 w-6 text-primary" />
@@ -54,7 +54,7 @@ export default function DashboardPage() {
             <p className="text-xs text-muted-foreground">New tasks added daily</p>
           </CardContent>
         </Card>
-         <Card>
+         <Card className="transition-all hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Reputation</CardTitle>
             <Badge variant="secondary" className="text-sm">{accountStats.reputation}</Badge>
